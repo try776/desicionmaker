@@ -1,0 +1,39 @@
+html, body{
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	font-family: Arial, sans-serif;
+}
+
+h1{
+	margin: 0;
+}
+
+p{
+	margin:0;
+}
+
+header{
+	background-color: #ffcc00;
+	height: 150px;
+	line-height: 150px;
+}
+
+nav{
+	background-color: #584125;
+	height: 50px;
+	line-height: 50px;
+}
+
+main{
+	background-color: #ebe4d1;
+	height: 450px;
+	line-height: 450px;
+}
+
+footer{
+	background-color: #584125;
+	height: 150px;
+	line-height: 150px;
+}
+
