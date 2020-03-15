@@ -26,3 +26,4 @@ function build($page)
 ?>
 
 //test
+//test2
