@@ -3,7 +3,6 @@
     "git.alwaysShowStagedChangesResourceGroup": true,
     "git.alwaysSignOff": true,
     "git.autofetch": true,
-    "git.enableCommitSigning": true,
     "git.ignoreLimitWarning": true,
     "git.enableSmartCommit": true
 }
