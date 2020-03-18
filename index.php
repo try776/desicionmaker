@@ -3,8 +3,6 @@
 session_start();
 $_SESSION['timeout'] = time();
 
-
-
 //Zeit setzen
 #<<Zeit>>
 if (!isset($_SESSION['zeit'])) {
@@ -105,7 +103,10 @@ if (!empty($url[1])) {
 		case '404':
 				build('404.php');
 				break;
-	
+
+		case 'comment_create':
+				build('comment_create.php');
+				break;
 		default:
 			build('404.php');
 			break;

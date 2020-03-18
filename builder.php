@@ -8,6 +8,7 @@ function build($page)
     <head>
         <?php require_once 'head.php'; ?>
     </head>
+
     <body>
         <nav style="background-color:#5c6bc0;">
             <?php require_once 'navigation.php'; ?>
@@ -24,6 +25,3 @@ function build($page)
 <?php
 }
 ?>
-
-//test
-//test2

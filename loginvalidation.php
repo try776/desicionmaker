@@ -12,7 +12,7 @@ function password_check()
                 if ($row['Password'] === $_POST['pass']) {
                     $_SESSION['login'] = true;
                     $_SESSION['userid'] =  $row['ID_User'];
-                    echo "Login erfolgn";
+                    echo "Login erfolgreich";
                     header('Location: userhome');
                     exit;
                 } else {

@@ -102,4 +102,30 @@ function write_vote()
     else{
     header('Location: impressum');}
 }
+
+function loginCheck(){
+
+    if (!isset( $_SESSION['login'])){
+        echo ("<li><a href=\"login\">Login</a></li>");
+    } else {
+        echo ("<li><a href=\"session_destroy\">Logout</a></li>");
+    }
+}
+
+function showComment($abstimmmungid)
+{
+    $db = new Mysqli("localhost", "tester", "welcome$20", "desicionmaker");
+    $sql = "SELECT comment from kommentar where Abstimmung_ID = '$abstimmmungid'";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+           echo" <div class=\"grid-example col s12\">
+                            <div class=\"card-panel grey lighten-1 hoverable\">
+                                <p> " . $row['comment'] . " <p>
+                            </div>
+                        </div>";
+        }
+    }
+}
 ?>
