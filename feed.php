@@ -1,10 +1,8 @@
 <?php
 sessionCheck()
 ?>
-
 <body>
     <div class="container">
-        <!--70% Breite-->
         <div class="row">
             <div class="grid-example col s4">
                 <h3 class="black-text">
@@ -19,16 +17,13 @@ sessionCheck()
                 </div>
             </div>
         </div>
-        <!-- Hier beginnen die eigentlichen Beiträge-->
-        <div class="card-panel grid-example col s4">
-            <!--BaseDiv Abstimmung-->
-            <div class="row">
-                <div>
-                    <?php
-                    feedCardLister();
-                    ?>
-                </div>
-            </div>
-        </div>
+    </div>
+
+    <?php
+    feedCardLister();
+    ?>
+    </div>
+    </div>
+    </div>
     </div>
 </body>

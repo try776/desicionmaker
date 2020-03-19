@@ -19,19 +19,25 @@ function feedCardLister()
 
 function write_account()
 {
-    $db = new Mysqli("localhost", "tester", "welcome$20", "desicionmaker");
     if (isset($_POST['submit'])) {
-        $f_pw = hash('sha256', ($_POST['pw']));
         $f_username = ($_POST['username']);
-        $sql = $db->prepare(
-            "INSERT INTO user (username, password) VALUES (?, ?)"
-        );
-        $sql->bind_param('ss', $f_username, $f_pw);
-        $sql->execute();
-        $db->close();
-        header('Location: userhome');
-    }
-    
+        $db = new Mysqli("localhost", "tester", "welcome$20", "desicionmaker");
+        $query = "Select count(*) AS anzahl from user where Username = '$f_username'";
+        $result = mysqli_query($db, $query);
+        $row = mysqli_fetch_array($result);
+        $anzahl = $row['anzahl'];
+        if ($anzahl > 0) {
+            echo 'Der Benutzername existiert Bereits';
+        } else {
+            $f_pw = hash('sha256', ($_POST['pw']));
+            $db = new Mysqli("localhost", "tester", "welcome$20", "desicionmaker");
+            $sql = $db->prepare("INSERT INTO user (username, password) VALUES (?, ?)");
+            $sql->bind_param('ss', $f_username, $f_pw);
+            $sql->execute();
+            $db->close();
+            header('Location: userhome');
+            } 
+        }
 }
 
 function get_percentage($idabst)
@@ -42,6 +48,52 @@ function get_percentage($idabst)
     $row = mysqli_fetch_array($result);
     $anzahl = $row['anzahl'];
     return $anzahl;
+    $db->close();
+}
+
+function get_number_vote_user()
+{
+    $userid = $_SESSION['userid'];
+    $db = new Mysqli("localhost", "tester", "welcome$20", "desicionmaker");
+    $sql = "SELECT COUNT(*) AS anzahl FROM abstimmung_user where User_ID = '$userid'";
+    $result = mysqli_query($db, $sql);
+    $row = mysqli_fetch_array($result);
+    $anzahl = $row['anzahl'];
+    echo $anzahl;
+    $db->close();
+}
+
+function get_number_vote_user_pro()
+{
+    $userid = $_SESSION['userid'];
+    $db = new Mysqli("localhost", "tester", "welcome$20", "desicionmaker");
+    $sql = "SELECT COUNT(*) AS anzahl FROM abstimmung_user where User_ID = '$userid' and Bewertung = 1";
+    $result = mysqli_query($db, $sql);
+    $row = mysqli_fetch_array($result);
+    $anzahl = $row['anzahl'];
+    echo $anzahl;
+    $db->close();
+}
+function get_number_vote_user_con()
+{
+    $userid = $_SESSION['userid'];
+    $db = new Mysqli("localhost", "tester", "welcome$20", "desicionmaker");
+    $sql = "SELECT COUNT(*) AS anzahl FROM abstimmung_user where User_ID = '$userid' and Bewertung = 0";
+    $result = mysqli_query($db, $sql);
+    $row = mysqli_fetch_array($result);
+    $anzahl = $row['anzahl'];
+    echo $anzahl;
+    $db->close();
+}
+function get_number_comment_user()
+{
+    $userid = $_SESSION['userid'];
+    $db = new Mysqli("localhost", "tester", "welcome$20", "desicionmaker");
+    $sql = "SELECT COUNT(*) AS anzahl FROM kommentar where User_ID = $userid";
+    $result = mysqli_query($db, $sql);
+    $row = mysqli_fetch_array($result);
+    $anzahl = $row['anzahl'];
+    echo $anzahl;
     $db->close();
 }
 
@@ -114,18 +166,30 @@ function loginCheck(){
 
 function showComment($abstimmmungid)
 {
-    $db = new Mysqli("localhost", "tester", "welcome$20", "desicionmaker");
+    $db = new mysqli("localhost", "tester", "welcome$20", "desicionmaker");
     $sql = "SELECT comment from kommentar where Abstimmung_ID = '$abstimmmungid'";
     $result = $db->query($sql);
 
     if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-           echo" <div class=\"grid-example col s12\">
-                            <div class=\"card-panel grey lighten-1 hoverable\">
-                                <p> " . $row['comment'] . " <p>
-                            </div>
-                        </div>";
+        while($row = $result->fetch_assoc()) {
+            $comment = $row['comment'];
+            return "<p>$comment</p> <br>";
         }
     }
 }
+function changePassword()
+{
+    if (isset($_POST['submit'])) {
+            $p_userid = ($_SESSION['userid']);
+            $p_pw = hash('sha256', ($_POST['pw']));
+            $db = new Mysqli("localhost", "tester", "welcome$20", "desicionmaker");
+            $sql = $db->prepare("Update user set password='$p_pw' where unsername='$p_userid'");
+            $sql->bind_param('ss', $f_username, $f_pw);
+            $sql->execute();
+            $db->close();
+            header('Location: userhome');
+            } 
+        }
+
 ?>
+;

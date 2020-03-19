@@ -2,4 +2,4 @@
 sessionCheck()
 ?>
 
-<h1>themen</h1>
+<h3>themen</h3>

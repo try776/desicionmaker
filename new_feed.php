@@ -1,3 +1,4 @@
+
 <?php
 function selectData3()
 {
@@ -7,21 +8,21 @@ function selectData3()
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo " <div class=\"container\">
+           echo" <div class=\"container\">
                     <div class=\"row\">
                     <div class=\"col s9 push-s1\">
                         <div class=\"card blue-grey darken-1\">
                             <div class=\"card-content white-text\">
                                 <span class=\"card-title\"> " . $row['titel'] . "</span>
                                 <p> " . $row['beschreibung'] . " <br></p>
-                                <p>Anzahl votes: " . get_percentage($row['id_abstimmung']) . " <br></p>
+                                <p>Anzahl votes: " . get_percentage( $row['id_abstimmung']) . " <br></p>
                                 <p>Abstimmung ID: " . $row['id_abstimmung'] . "<br></p>
                             </div>
                             <div class=\"card-content white-text\">
                                 <span class=\"card-title\">Vote Now</span>
                             </div>
                             <div class=\"progress\" style=\"background-color:red\">
-                                <div class=\"determinate\" style=\"width:" . get_percentage($row['id_abstimmung']) . "%\">
+                                <div class=\"determinate\" style=\"width:" . get_percentage( $row['id_abstimmung']) . "%\">
                                 </div>
                             </div>
                             <form action=\"write_vote\" method=\"post\">
@@ -32,14 +33,14 @@ function selectData3()
                             <div class=\"row\">
                                 <div class=\"card-content white-text\">
                                     <span class=\"card-title\">Kommentare:</span>
-                                        <p>test " . showComment($row['id_abstimmung']) . "</p>
+                                    " .showComment( $row['id_abstimmung']) . "
                                 </div>
                             </div>
                             <div class=\"card-content white-text\">
                                 <form action=\"comment_create\" method=\"post\">
                                     <div class=\"row\">
                                         <div class=\"input-field col s12\">
-                                            <textarea name=\"comment\" class=\"materialize-textarea validate\" length=\"500\" required></textarea>
+                                            <textarea name=\"comment\" id=\"textarea1\" class=\"materialize-textarea validate\" length=\"500\" required></textarea>
                                             <label for=\"textarea1\">Dein Kommentar</label>
                                         </div>
                                     </div>
@@ -52,10 +53,5 @@ function selectData3()
                 </div>
             </div>
         </div>";
-        }
-    }
-}
-?>
-<?php
-selectData3();
+        }}}
 ?>

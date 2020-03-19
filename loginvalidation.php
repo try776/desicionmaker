@@ -2,7 +2,7 @@
 function password_check()
 {
     $password_hash = hash('sha256', ($_POST['pw']));
-    $username = ($_POST['username']);
+    $username = $_POST['username'];
     $_POST['pass'] = $password_hash;
     if (isset($_POST['submit'])) {
         $db = new Mysqli("localhost", "tester", "welcome$20", "desicionmaker");
@@ -12,9 +12,9 @@ function password_check()
                 if ($row['Password'] === $_POST['pass']) {
                     $_SESSION['login'] = true;
                     $_SESSION['userid'] =  $row['ID_User'];
+                    $_SESSION['username'] = $_POST['username'];
                     echo "Login erfolgreich";
                     header('Location: userhome');
-                    exit;
                 } else {
                     $db->close();
                     echo "passwort nicht korrekt";

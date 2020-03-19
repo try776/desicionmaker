@@ -88,6 +88,10 @@ if (!empty($url[1])) {
 			build('abstimmung_erstellen.php');
 			break;
 
+		case 'password_change':
+			build('password_change.php');
+			break;
+
 		case 'abstimmung_review':
 			build('abstimmung_review.php');
 			break;
@@ -103,6 +107,11 @@ if (!empty($url[1])) {
 		case '404':
 				build('404.php');
 				break;
+				
+		case 'new_feed':
+				build('new_feed.php');
+				break;
+
 
 		case 'comment_create':
 				build('comment_create.php');
